@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Zexx</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Video with Blur Box</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            overflow: hidden;
+        }
 
-<style>
-body{
-text-align: center;
-}
-
-@font-face {
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        @font-face {
 font-family: "Dezzy";
 src: url(Dezzy.ttf);
 }
@@ -16,15 +31,48 @@ src: url(Dezzy.ttf);
 h1 {
 font-family: "Dezzy";
 }
-</style>
-</head>
 
+@font-face {
+font-family: "Eramore";
+src: url(Eramore.otf);
+}
+
+p {
+font-family: "Eramore";
+}
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .blur-box {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .blur-box h1, .blur-box p {
+            margin: 0;
+        }
+    </style>
+</head>
 <body>
-<h1>HAY THERE</h1>
-<p>ZEXX ON HERE</p>
-        <video controls autoplay loop>
-            <source src="somebody's pleasure.mp4" type="video/mp4">
-            Browser Anda tidak mendukung tag video.
-        </video> 
+    <video autoplay loop class="background-video">
+        <source src="somebody's pleasure.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="container">
+        <div class="blur-box">
+            <h1>ZEXX WAS HERE</h1>
+            <p>Zex </p>
+        </div>
+    </div>
 </body>
 </html>
