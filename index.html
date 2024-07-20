@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hallo There</title>
+    <title>Hallo word</title>
     <style>
         body, html {
             height: 100%;
@@ -13,7 +13,7 @@
             overflow: hidden;
         }
 
-        .background-video {
+        .background-image {
             position: absolute;
             top: 0;
             left: 0;
@@ -21,34 +21,40 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
+            background-image: url('https://wallpapercave.com/wp/wp12444529.jpg');
+            background-size: cover;
+            background-position: center;
         }
         
         @font-face {
-font-family: "Dezzy";
-src: url(Dezzy.ttf);
-}
-
-h1 {
-font-family: "Dezzy";
-}
-
-@font-face {
-font-family: "Eramore";
-src: url(Eramore.otf);
-}
-
-p {
-font-family: "Eramore";
-}
-        @font-face {
-font-family: "ipon";
-src: url(ipon.ttf);
+            font-family: "Dezzy";
+            src: url(Dezzy.ttf);
         }
-z{
-    font-family: "ipon";
-    color: white;
-    text-align: center;
-}
+
+        h1 {
+            font-family: "Dezzy";
+        }
+
+        @font-face {
+            font-family: "Eramore";
+            src: url(Eramore.otf);
+        }
+
+        p {
+            font-family: "Eramore";
+        }
+
+        @font-face {
+            font-family: "ipon";
+            src: url(ipon.ttf);
+        }
+
+        z {
+            font-family: "ipon";
+            color: white;
+            text-align: center;
+        }
+
         .container {
             display: flex;
             justify-content: center;
@@ -71,11 +77,8 @@ z{
     </style>
 </head>
 <body>
-    <video autoplay loop class="background-video">
-        <source src="https://wallpapercave.com/wp/wp12444529.jpg" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-<z> </z>
+    <div class="background-image"></div>
+    <z> </z>
     <div class="container">
         <div class="blur-box">
             <h1>ZEXX WAS HERE</h1>
