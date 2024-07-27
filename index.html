@@ -8,32 +8,32 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background: #f0f0f0;
-            color: #333;
+            background: #121212; /* Background gelap */
+            color: #eee; /* Teks terang untuk kontras */
             margin: 0;
             padding: 0;
         }
-           @font-face {
+        @font-face {
             font-family: "Dezzy";
             src: url(Dezzy.ttf);
         }
-          @font-face {
+        @font-face {
             font-family: "ipon";
             src: url(ipon.ttf);
-            }
-                @font-face {
+        }
+        @font-face {
             font-family: "Eramore";
             src: url(Eramore.otf)
-            }
+        }
         .container {
             padding: 20px;
         }
         .message {
-            background: #fff;
+            background: #1f1f1f; /* Warna latar belakang yang lebih gelap */
             border-radius: 10px;
             padding: 20px;
             margin: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .message h1 {
             font-size: 24px;
@@ -49,13 +49,33 @@
             color: #888;
         }
         z {
-              font-family: "Eramore";
+            font-family: "Eramore";
         }
         x {
-                 font-family: "Dezzy";
+            font-family: "Dezzy";
         }
         y {
             font-family: "ipon";
+        }
+        .ios-button {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background-color: #007AFF; /* Warna biru khas iOS */
+            border-radius: 30px; /* Membuatnya bulat */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            position: relative;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .ios-button:after {
+            content: '▶'; /* Simbol play */
+            font-size: 24px;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
@@ -73,20 +93,34 @@
             <h1>Keep Going</h1>
             <p>No matter what happens, you have the strength to overcome it.</p>
         </div>
-                <div class="message">
+        <div class="message">
             <h1>Apple iPhone</h1>
             <p><y></y></p>
         </div>
-                <div class="message">
+        <div class="message">
             <z>Hay There</z>
-            <p><x>this is a Dezzy font, you can get this from my github.</x>
-                  <audio allow="autoplay" src="somebody's pleasure.mp4" audio loop controls></audio></p>
-                </div>
+            <p><x>this is a Dezzy font, you can get this from my github.</x></p>
+            <div class="ios-button" id="playButton"></div>
+            <audio id="myAudio" src="somebody's pleasure.mp4" loop></audio>
+        </div>
     </div>
     <div class="footer">
-            <div class="text"></div>
-  <script src="https://zexx13feb.github.io/font/Adt.js"></script>
+        <div class="text"></div>
+        <script src="https://zexx13feb.github.io/font/Adt.js"></script>
         &copy; 2024 | Only For U
     </div>
+    <script>
+        // Menambahkan fungsi untuk tombol play
+        const playButton = document.getElementById('playButton');
+        const audio = document.getElementById('myAudio');
+        
+        playButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        });
+    </script>
 </body>
 </html>
