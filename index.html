@@ -1,148 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hallo 🗿</title>
+    <title>Profile Card</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: #121212; /* Background gelap */
-            color: #eee; /* Teks terang untuk kontras */
             margin: 0;
             padding: 0;
-        }
-        @font-face {
-            font-family: "Dezzy";
-            src: url(Dezzy.ttf);
-        }
-        @font-face {
-            font-family: "ipon";
-            src: url(ipon.ttf);
-        }
-        @font-face {
-            font-family: emoji;
-            src: url(emoji.ttf);
-        }
-        @font-face {
-            font-family: "Eramore";
-            src: url(Eramore.otf)
-        }
-        .container {
-            padding: 20px;
-        }
-        .message {
-            background: #1f1f1f; /* Warna latar belakang yang lebih gelap */
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        .message h1 {
-            font-size: 24px;
-            margin: 0 0 10px;
-        }
-        .message p {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-        .footer {
-            margin-top: 40px;
-            font-size: 14px;
-            color: #888;
-        }
-        video {
-            width: 150px;
-            border-radius: 10%;
-        }
-        z {
-            font-family: "Eramore";
-        }
-        x {
-            font-family: "Dezzy";
-        }
-        y {
-            font-family: "ipon";
-        }
-        zx {
-            font-family: "emoji";
-        }
-        .ios-button {
-            display: inline-block;
-            width: 60px;
-            height: 60px;
-            background-color: #007AFF; /* Warna biru khas iOS */
-            border-radius: 10px; /* Membuatnya bulat */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            position: relative;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .ios-button:after {
-            content: 'play'; /* Simbol play */
-            font-size: 24px;
+            font-family: Arial, sans-serif;
             color: white;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+            background-color: #181818;
         }
+
+        .card {
+            background-color: #333;
+            border-radius: 15px;
+            padding: 20px;
+            width: 90%;
+            max-width: 350px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .card h2 {
+            margin: 10px 0;
+            font-size: 24px;
+            background: linear-gradient(90deg, #ff0000, #ffff00, #ff00f3, #0033ff, #ff00c4, #ff0000);
+            background-size: 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientAnimation 10s linear infinite;
+        }
+
+        .card p {
+            margin: 5px 0;
+            color: #999;
+        }
+
+        .card .verified {
+            color: #55c1ff;
+        }
+
+        .card .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px 0;
+        }
+
+        .card .social-links a {
+            padding: 10px;
+            background-color: #444;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .card .social-links a i {
+            margin-right: 8px;
+        }
+
+        /* Warna tetap abu-abu, berubah saat hover */
+        .card .social-links a.github:hover {
+            background-color: #333;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .card .social-links a.instagram:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            box-shadow: 0 0 15px rgba(255, 182, 193, 0.7);
+        }
+
+        .card .social-links a.telegram:hover {
+            background-color: #0088cc;
+            box-shadow: 0 0 15px rgba(0, 136, 204, 0.7);
+        }
+
+        .card .social-links a.email:hover {
+            background-color: #dd4b39;
+            box-shadow: 0 0 15px rgba(221, 75, 57, 0.7);
+        }
+
+        .card .social-links a.whatsapp:hover {
+            background-color: #25d366;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.7);
+        }
+
+        .card .social-links a:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            50% {
+                background-position: 100% 100%;
+            }
+
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .card img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .card h2 {
+                font-size: 20px;
+            }
+
+            .card p {
+                font-size: 14px;
+            }
+
+            .card .social-links a {
+                font-size: 12px;
+                padding: 8px;
+            }
+        }
+
+        .slide-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 1s forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #444;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .switch:hover {
+            background-color: #555;
+        }
+        
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="message">
-            <h1>Stay Strong</h1>
-            <p>Remember to take care of yourself and find happiness in the little things.</p>
+<body> <!-- off switch mode-->
+ <!--   <button class="switch" onclick="toggleDarkMode()">Light Mode//Not working 😂😂</button>  -->
+    <div class="card">
+        <img src="https://telegra.ph/file/0bca3c7e31d13915e5779.jpg" alt="Profile Picture">
+        <h2>Zexx <span class="verified"><i class="fas fa-check-circle"></i></span></h2>
+        <p class="slide-up">I'am A</p>
+        <p id="tek"></p>
+        <div class="social-links">
+            <a href="https://github.com/zexx13Feb/" class="github"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://www.instagram.com/yzadtx/" class="instagram"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://t.me/adtzyn/" class="telegram"><i class="fab fa-telegram-plane"></i> Telegram</a>
+            <a href="mailto:zexxishere@gmail.com" class="email"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://wa.me/6285702249514?text=Hallo+kak+mau+kue+ga?͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏+kuewe" class="whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <h6 id="tanggal"></h6>
         </div>
-        <div class="message">
-            <h1>You Are Loved</h1>
-            <p>Thank you for being here. You are appreciated more than you know.</p>
-        </div>
-        <div class="message">
-            <h1>Keep Going</h1>
-            <p>No matter what happens, you have the strength to overcome it.</p>
-        </div>
-        <div class="message">
-            <h1>Apple iPhone</h1>
-            <p><y></y></p>
-        </div>
-        <div class="message">
-            <h1>Apple emojis</h1>
-            <p><zx>🗿😋😭😁😏🌍🤣😵🤧</zx></p>
-            <font size="3"> not working</font>
-        </div>
-        <div class="message">
-            <z>Hay There</z>
-            <p><x>this is a Dezzy font, you can get this from my github.</x></p>
-            <div class="ios-button" id="playButton"></div>
-            <audio id="myAudio" src="somebody's pleasure.mp4" loop></audio>
-        </div>
-        <div class="message">
-        <video id="video" src="kucing.mp4" loop></video>
-        </div>  
-        <div class="message">
-           <div class="tenor-gif-embed" data-postid="1053708948523679719" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/dancing-tiramisu-cake-tiramisu-cake-cutie-bl-icon-dancing-gif-1053708948523679719">Dancing Tiramisu Cake Cutie Bl Icon Dancing GIF</a>from <a href="https://tenor.com/search/dancing+tiramisu+cake-gifs">Dancing Tiramisu Cake GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
-            </div>
-    </div>
-    <div class="footer">
-        <div class="text"></div>
-        <script src="https://zexx13feb.github.io/font/Adt.js"></script>
-        &copy; 2024 | Only For U
     </div>
     <script>
-        // Menambahkan fungsi untuk tombol play
-        const playButton = document.getElementById('playButton');
-        const audio = document.getElementById('myAudio');
-        
-        playButton.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play();
+        function toggleDarkMode() {
+            const body = document.body;
+            const switchButton = document.querySelector('.switch');
+            body.classList.toggle('light-mode');
+            if (body.classList.contains('light-mode')) {
+                body.style.backgroundColor = 'grey';
+                body.style.color = '#000';
+                switchButton.textContent = 'Dark Mode';
             } else {
-                audio.pause();
+                body.style.backgroundColor = '#1c1c1c';
+                body.style.color = '#fff';
+                switchButton.textContent = 'Light Mode';
             }
-        });
+        }
+
+        function tampilTanggal() {
+            var tanggal = new Date();
+            var hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            var bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            var tahun = tanggal.getFullYear();
+            var jam = tanggal.getHours().toString().padStart(2, '0');
+            var menit = tanggal.getMinutes().toString().padStart(2, '0');
+            var detik = tanggal.getSeconds().toString().padStart(2, '0');
+            document.getElementById("tanggal").innerHTML = `${hari[tanggal.getDay()]}, ${tanggal.getDate()} ${bulan[tanggal.getMonth()]} ${tahun} - ${jam}:${menit}:${detik}`;
+        }
+
+        tampilTanggal();
+        setInterval(tampilTanggal, 1000); // Update waktu setiap 1 detik
+        
+        document.addEventListener('DOMContentLoaded', function (event) {
+    // array with texts to type in typewriter
+    var dataText = ["developer and programer", "gamer", "codder and", "hackers!😈😈", "just kidding"];
+
+    // type one text in the typwriter
+    // keeps calling itself until the text is finished
+    function typeWriter(text, i, fnCallback) {
+        // check if text isn't finished yet
+        if (i < text.length) {
+            // add next character to h1
+            document.getElementById("tek").innerHTML = text.substring(0, i + 1);
+
+            // wait for a while and call this function again for next character
+            setTimeout(function () {
+                typeWriter(text, i + 1, fnCallback);
+            }, 80);
+        }
+        // text finished, call callback if there is a callback function
+        else if (typeof fnCallback == 'function') {
+            // call callback after timeout
+            setTimeout(fnCallback, 2000);
+        }
+    }
+
+    // start a typewriter animation for a text in the dataText array
+    function StartTextAnimation(i) {
+        if (i < dataText.length) { // Mengubah logika ini
+            // text exists! start typewriter animation
+            typeWriter(dataText[i], 0, function () {
+                // after callback (and whole text has been animated), start next text
+                StartTextAnimation(i + 1);
+            });
+        } else {
+            // Reset kembali ke awal setelah semua teks selesai ditampilkan
+            setTimeout(function () {
+                StartTextAnimation(0);
+            }, 1000);
+        }
+    }
+    StartTextAnimation(0);
+});
+
     </script>
 </body>
+
 </html>
