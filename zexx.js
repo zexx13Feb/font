@@ -42,4 +42,3 @@ window.addEventListener('resize', () => {
     canvas.height = window.innerHeight;
     yPositions.fill(0);
 });
-      
