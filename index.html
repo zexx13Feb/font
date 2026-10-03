@@ -605,17 +605,9 @@
          MUSIC
     ========================== -->
 
-    <audio
-        id="bgMusic"
-        loop
-        preload="auto"
-    >
-        <source
-            src="flatline.mp3"
-            type="audio/mpeg"
-        >
-    </audio>
-
+    <audio id="bgMusic" autoplay loop>
+    <source src="flatline.mp3" type="audio/mpeg">
+</audio>
 
     <!-- =========================
          MAIN CARD
@@ -657,7 +649,7 @@
             </a>
 
             <a
-                href="https://www.instagram.com/yzadtx/"
+                href="https://www.instagram.com/adtt_vz?stkn=OGt6NnlnazNqY3Nz"
                 class="instagram"
                 target="_blank"
                 rel="noopener"
@@ -667,7 +659,7 @@
             </a>
 
             <a
-                href="https://t.me/adtzyn/"
+                href="https://t.me/xditz/"
                 class="telegram"
                 target="_blank"
                 rel="noopener"
@@ -712,7 +704,14 @@
     >
         <i class="fas fa-volume-mute"></i>
     </button>
-
+    
+    <script>
+window.addEventListener("load", () => {
+    const music = document.getElementById("bgMusic");
+    music.volume = 0.7;
+    music.play().catch(() => {});
+});
+</script>
 
     <script>
 
@@ -889,7 +888,4 @@
                         "fas fa-volume-up";
 
                 })
-                .catch(() => {
-
-                    musicIcon.className =
-                        "fas fa-volume-mute";
+               
