@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>about zexx</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --accent-color: #a855f7;
+            --accent-glow: rgba(168, 85, 247, 0.5);
+            --accent-border: rgba(168, 85, 247, 0.2);
+            --accent-hover: rgba(147, 51, 234, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #040208;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        .heading-font {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Dynamic Theme Styles */
+        .theme-accent-text { color: var(--accent-color); }
+        .theme-accent-border { border-color: var(--accent-border); }
+        .theme-accent-bg { background-color: var(--accent-color); }
+
+        /* Glassmorphism Cards & Elements */
+        .glass-card {
+            background: rgba(12, 8, 24, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--accent-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .glass-button {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--accent-border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-button:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 25px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .glass-button:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        /* Avatar Deep Glow Animation */
+        .avatar-glow {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 25px var(--accent-glow);
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 15px var(--accent-glow);
+            }
+            100% {
+                box-shadow: 0 0 35px var(--accent-color);
+            }
+        }
+
+        /* Cyber Glitch Effect for Profile Name */
+        .glitch {
+            position: relative;
+            color: #ffffff;
+            letter-spacing: 1.5px;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            clip: rect(0, 0, 0, 0);
+        }
+
+        .glitch::before {
+            left: -2px;
+            text-shadow: 2px 0 var(--accent-color);
+            animation: glitch-anim-1 2.2s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: 2px;
+            text-shadow: -2px 0 #6366f1;
+            animation: glitch-anim-2 3.1s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(20px, 9999px, 15px, 0); }
+            20% { clip: rect(42px, 9999px, 78px, 0); }
+            40% { clip: rect(10px, 9999px, 85px, 0); }
+            60% { clip: rect(65px, 9999px, 30px, 0); }
+            80% { clip: rect(3px, 9999px, 90px, 0); }
+            100% { clip: rect(50px, 9999px, 10px, 0); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(70px, 9999px, 5px, 0); }
+            20% { clip: rect(12px, 9999px, 60px, 0); }
+            40% { clip: rect(85px, 9999px, 10px, 0); }
+            60% { clip: rect(25px, 9999px, 95px, 0); }
+            80% { clip: rect(40px, 9999px, 18px, 0); }
+            100% { clip: rect(5px, 9999px, 75px, 0); }
+        }
+
+        /* Full Screen Backdrop Blur Container Filter */
+        #mainContent {
+            transition: filter 0.4s ease-in-out, transform 0.4s ease-in-out;
+        }
+
+        .full-screen-blur {
+            filter: blur(16px) brightness(0.5);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Backdrop Overlay Curtain */
+        .modal-curtain {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease-in-out;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .modal-curtain.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            background-color: var(--accent-glow);
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Audio Equalizer Bars */
+        .eq-bar {
+            width: 3px;
+            height: 12px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+            animation: bounce 0.8s infinite ease-in-out alternate;
+        }
+
+        .eq-bar:nth-child(1) { animation-delay: 0.1s; }
+        .eq-bar:nth-child(2) { animation-delay: 0.3s; }
+        .eq-bar:nth-child(3) { animation-delay: 0.2s; }
+        .eq-bar:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0% { height: 4px; }
+            100% { height: 16px; }
+        }
+
+        .paused .eq-bar {
+            animation-play-state: paused;
+            height: 4px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between items-center px-4 py-6 relative selection:bg-purple-600 selection:text-white">
+
+    <!-- Video Background Container -->
+    <div class="fixed inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+        <video id="bgVideo" autoplay loop muted playsinline class="w-full h-full object-cover filter brightness-[0.55] contrast-[1.1] scale-105">
+            <source id="bgVideoSource" src="https://v1.pinterest.com/videos/iht/expMp4/f3/e5/fc/f3e5fc99e1697e1b38a8973f67b5b10b_720w.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90"></div>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <div id="mainContent" class="w-full max-w-md min-h-full flex flex-col justify-between items-center z-10 flex-1">
+        <!-- Top Header Navigation -->
+        <header class="w-full flex justify-between items-center mb-4">
+            <div class="text-xs font-mono text-purple-200/80 bg-black/70 px-3.5 py-1.5 rounded-full border theme-accent-border backdrop-blur-md flex items-center space-x-2 shadow-lg">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="tracking-wider">ONLINE</span>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+                <!-- Quick Music Trigger Button -->
+                <button onclick="toggleMusicMenu()" class="glass-card flex items-center space-x-2 px-3.5 py-1.5 rounded-full border theme-accent-border transition duration-300">
+                    <div id="eqIcon" class="flex items-center space-x-0.5 paused h-4">
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                    </div>
+                    <span class="text-xs font-medium text-gray-200">Music</span>
+                    <i class="fa-solid fa-sliders text-xs theme-accent-text ml-1"></i>
+                </button>
+
+                <!-- Menu Titik 3 (Settings) -->
+                <button onclick="toggleOptionsMenu()" class="glass-card flex items-center justify-center w-9 h-9 rounded-full border theme-accent-border hover:border-purple-400 transition duration-300 text-gray-200">
+                    <i class="fa-solid fa-ellipsis-vertical text-sm"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="w-full flex-1 flex flex-col items-center">
+            <!-- Avatar Profile -->
+            <div class="relative group mb-3">
+                <div class="w-28 h-28 rounded-full p-1 border-2 avatar-glow overflow-hidden bg-black/70 relative">
+                    <img src="https://i.pinimg.com/736x/26/06/fb/2606fb11ae5520bf1f75e5cc7ae2d374.jpg" 
+                         alt="Profile Avatar" 
+                         class="w-full h-full object-cover rounded-full transform group-hover:scale-110 transition duration-500"
+                         onerror="this.src='https://placehold.co/150x150/11071f/a855f7?text=zexx'">
+                </div>
+                <div class="absolute bottom-1 right-1 w-5 h-5 theme-accent-bg border-2 border-black rounded-full flex items-center justify-center text-[9px] text-white">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+            </div>
+
+            <!-- Name with Cyber Glitch Effect -->
+            <div class="text-center mb-5">
+                <div class="flex items-center justify-center space-x-2">
+                    <h1 class="glitch heading-font text-3xl font-black tracking-wide" data-text="zexx">zexx</h1>
+                    <i class="fa-solid fa-circle-check theme-accent-text text-lg" title="Verified Account"></i>
+                </div>
+                <p class="text-xs tracking-wider text-purple-300/80 font-mono mt-1">eat • sleep • coding • game • pray • repeat</p>
+            </div>
+
+            <!-- Interactive Social Links Stack -->
+            <div class="w-full space-y-3" id="linksContainer">
+                <a href="https://www.tiktok.com/@ryl_adt?lang=id-ID&is_from_webapp=1&sender_device=mobile&sender_web_id=769356377716650957" target="_blank" onclick="handleLinkClick(event, 'TikTok')" class="glass-button relative overflow-hidden group flex items-center justify-between px-5 py-3.5 rounded-2xl w-full">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-9 h-9 rounded-xl bg-black/50 border theme-accent-border flex items-center justify-center theme-accent-text group-hover:text-white group-hover:bg-purple-600/40 transition duration-300">
+                            <i class="fa-brands fa-tiktok text-lg"></i>
+                        </div>
+                        <span class="font-medium text-sm text-gray-200 group-hover:text-white">TikTok</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-gray-500 group-hover:theme-accent-text group-hover:translate-x-1 transition duration-300"></i>
+                </a>
+
+                <a href="https://instagram.com/adt_vz" target="_blank" onclick="handleLinkClick(event, 'Instagram')" class="glass-button relative overflow-hidden group flex items-center justify-between px-5 py-3.5 rounded-2xl w-full">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-9 h-9 rounded-xl bg-black/50 border theme-accent-border flex items-center justify-center theme-accent-text group-hover:text-white group-hover:bg-purple-600/40 transition duration-300">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </div>
+                        <span class="font-medium text-sm text-gray-200 group-hover:text-white">Instagram</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-gray-500 group-hover:theme-accent-text group-hover:translate-x-1 transition duration-300"></i>
+                </a>
+
+                <a href="https://t.me/xditz" target="_blank" onclick="handleLinkClick(event, 'Telegram')" class="glass-button relative overflow-hidden group flex items-center justify-between px-5 py-3.5 rounded-2xl w-full">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-9 h-9 rounded-xl bg-black/50 border theme-accent-border flex items-center justify-center text-sky-400 group-hover:text-white group-hover:bg-sky-500/30 transition duration-300">
+                            <i class="fa-brands fa-telegram text-lg"></i>
+                        </div>
+                        <span class="font-medium text-sm text-gray-200 group-hover:text-white">Telegram Channel</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-gray-500 group-hover:text-sky-400 group-hover:translate-x-1 transition duration-300"></i>
+                </a>
+
+                <a href="https://github.com/zexx13feb" target="_blank" onclick="handleLinkClick(event, 'GitHub')" class="glass-button relative overflow-hidden group flex items-center justify-between px-5 py-3.5 rounded-2xl w-full">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-9 h-9 rounded-xl bg-black/50 border theme-accent-border flex items-center justify-center theme-accent-text group-hover:text-white group-hover:bg-purple-600/30 transition duration-300">
+                            <i class="fa-brands fa-github text-lg"></i>
+                        </div>
+                        <span class="font-medium text-sm text-gray-200 group-hover:text-white">GitHub Projects</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-gray-500 group-hover:theme-accent-text group-hover:translate-x-1 transition duration-300"></i>
+                </a>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-6 text-center">
+            <p class="text-[11px] font-mono text-purple-300/60 tracking-wider">
+                zexx &bull; &copy; 2026 All rights reserved
+            </p>
+        </footer>
+    </div>
+
+    <!-- Blackout Overlay Curtain (z-index disesuaikan ke 40 agar di atas mainContent tapi di bawah modal) -->
+    <div id="modalCurtain" onclick="closeAllModals()" class="modal-curtain fixed inset-0 bg-black/60 z-40"></div>
+
+    <!-- Modal Options / Titik 3 (z-index diset ke 50) -->
+    <div id="optionsModal" class="fixed bottom-0 inset-x-0 z-50 transform translate-y-full transition-transform duration-500 ease-out flex justify-center px-4 pb-6 pointer-events-none">
+        <div class="w-full max-w-md glass-card rounded-3xl p-5 border theme-accent-border relative shadow-2xl space-y-4 pointer-events-auto">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-gear theme-accent-text"></i>
+                    <h3 class="font-bold text-sm text-white">Pengaturan Tampilan</h3>
+                </div>
+                <button onclick="closeAllModals()" class="text-gray-400 hover:text-white transition p-2">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div>
+                <label class="text-xs font-medium text-gray-300 block mb-2">Pilih Warna Tema:</label>
+                <div class="grid grid-cols-6 gap-2">
+                    <button onclick="setThemeColor('#a855f7')" class="w-8 h-8 rounded-full bg-purple-500 ring-2 ring-white/20 hover:scale-110 transition"></button>
+                    <button onclick="setThemeColor('#3b82f6')" class="w-8 h-8 rounded-full bg-blue-500 ring-2 ring-white/20 hover:scale-110 transition"></button>
+                    <button onclick="setThemeColor('#06b6d4')" class="w-8 h-8 rounded-full bg-cyan-500 ring-2 ring-white/20 hover:scale-110 transition"></button>
+                    <button onclick="setThemeColor('#10b981')" class="w-8 h-8 rounded-full bg-emerald-500 ring-2 ring-white/20 hover:scale-110 transition"></button>
+                    <button onclick="setThemeColor('#f43f5e')" class="w-8 h-8 rounded-full bg-rose-500 ring-2 ring-white/20 hover:scale-110 transition"></button>
+                    <button onclick="setThemeColor('#f59e0b')" class="w-8 h-8 rounded-full bg-amber-500 ring-2 ring-white/20 hover:scale-110 transition"></button>
+                </div>
+            </div>
+
+            <div class="space-y-2 pt-2 border-t border-white/10">
+                <label class="text-xs font-medium text-gray-300 block">Custom Background Video:</label>
+                <div class="flex items-center space-x-2">
+                    <input type="text" id="videoUrlInput" placeholder="Masukkan URL video (.mp4)" class="w-full bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-purple-500">
+                    <button onclick="applyVideoUrl()" class="px-3 py-2 theme-accent-bg hover:opacity-90 text-white rounded-xl text-xs font-medium transition">Terapkan</button>
+                </div>
+                <div class="relative">
+                    <input type="file" id="videoFileInput" accept="video/*" class="hidden" onchange="handleVideoUpload(event)">
+                    <button onclick="document.getElementById('videoFileInput').click()" class="w-full py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs text-gray-300 flex items-center justify-center space-x-2 transition">
+                        <i class="fa-solid fa-upload"></i>
+                        <span>Upload Video dari Perangkat</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Player Card / Modal Drawer (z-index diset ke 50) -->
+    <div id="musicModal" class="fixed bottom-0 inset-x-0 z-50 transform translate-y-full transition-transform duration-500 ease-out flex justify-center px-4 pb-6 pointer-events-none">
+        <div class="w-full max-w-md glass-card rounded-3xl p-5 border theme-accent-border relative shadow-2xl pointer-events-auto">
+            <button onclick="closeAllModals()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="flex items-center space-x-4 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-700 via-purple-600 to-indigo-700 flex items-center justify-center text-white shadow-lg shadow-purple-600/30">
+                    <i class="fa-solid fa-compact-disc text-2xl animate-spin" style="animation-duration: 6s;" id="discIcon"></i>
+                </div>
+                <div>
+                    <h3 id="currentTitle" class="font-bold text-sm text-white">Lofi Study Vibe</h3>
+                    <p id="currentArtist" class="text-xs text-purple-300">Pixabay Music</p>
+                </div>
+            </div>
+
+            <div class="space-y-1 mb-4">
+                <input type="range" id="progressBar" value="0" max="100" class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-purple-500">
+                <div class="flex justify-between text-[10px] font-mono text-gray-400">
+                    <span id="currentTime">0:00</span>
+                    <span id="durationTime">0:00</span>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between mb-4 px-2">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-volume-high text-xs text-gray-400"></i>
+                    <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.8" class="w-16 h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-purple-500">
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button onclick="playPrevTrack()" class="text-gray-300 hover:text-purple-400 transition p-2">
+                        <i class="fa-solid fa-backward-step text-lg"></i>
+                    </button>
+                    <button onclick="toggleAudio()" class="w-11 h-11 rounded-full theme-accent-bg hover:opacity-90 text-white flex items-center justify-center shadow-lg transition transform active:scale-95">
+                        <i id="playBtnIcon" class="fa-solid fa-play text-base pl-0.5"></i>
+                    </button>
+                    <button onclick="playNextTrack()" class="text-gray-300 hover:text-purple-400 transition p-2">
+                        <i class="fa-solid fa-forward-step text-lg"></i>
+                    </button>
+                </div>
+
+                <button onclick="renderPlaylist()" class="text-gray-400 hover:text-purple-400 transition p-2" title="Pilih Lagu">
+                    <i class="fa-solid fa-list-ul text-sm"></i>
+                </button>
+            </div>
+
+            <div id="playlistContainer" class="space-y-1.5 max-h-36 overflow-y-auto border-t border-purple-500/20 pt-3">
+                <!-- Dynamic Songs Loaded Here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Popup -->
+    <div id="toast" class="fixed top-6 transform -translate-y-20 opacity-0 transition-all duration-300 z-50 glass-card px-4 py-2.5 rounded-full flex items-center space-x-2 border theme-accent-border pointer-events-none">
+        <i class="fa-solid fa-circle-info text-xs theme-accent-text"></i>
+        <span id="toastMessage" class="text-xs font-medium text-gray-200">Pesan Toast</span>
+    </div>
+
+    <script>
+        // Audio Tracks Playlist (Gunakan URL fallback lofi online jika mp3 lokal tidak ditemukan)
+        const playlist = [
+            {
+                title: "Jalan keluar",
+                artist: "Nuca",
+                url: "jalankeluar.mp3"
+            },
+            {
+                title: "Breathe",
+                artist: "Lofi Beats",
+                url: "breathe.mp3"
+            },
+            {
+                title: "Flat line",
+                artist: "Jb",
+                url: "flatlinefull.mp3"
+            }
+        ];
+
+        let currentTrackIndex = 0;
+        let isPlaying = false;
+
+        // Audio Object Setup
+        const audio = new Audio();
+        audio.src = playlist[currentTrackIndex].url;
+        audio.volume = 0.8;
+
+        // DOM Elements
+        const eqIcon = document.getElementById('eqIcon');
+        const playBtnIcon = document.getElementById('playBtnIcon');
+        const currentTitle = document.getElementById('currentTitle');
+        const currentArtist = document.getElementById('currentArtist');
+        const progressBar = document.getElementById('progressBar');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationTimeEl = document.getElementById('durationTime');
+        const volumeControl = document.getElementById('volumeControl');
+        const playlistContainer = document.getElementById('playlistContainer');
+        const musicModal = document.getElementById('musicModal');
+        const optionsModal = document.getElementById('optionsModal');
+        const modalCurtain = document.getElementById('modalCurtain');
+        const mainContent = document.getElementById('mainContent');
+        const discIcon = document.getElementById('discIcon');
+        const bgVideo = document.getElementById('bgVideo');
+
+        // Handling Audio Load Error (Misal file MP3 lokal belum di-upload di folder yang sama)
+        audio.addEventListener('error', (e) => {
+            if (isPlaying) {
+                isPlaying = false;
+                updatePlayerUI();
+                showToast(`File "${playlist[currentTrackIndex].url}" tidak ditemukan! Pasang file mp3 di folder kodenya.`);
+            }
+        });
+
+        function renderPlaylist() {
+            playlistContainer.innerHTML = '';
+            playlist.forEach((track, index) => {
+                const isCurrent = index === currentTrackIndex;
+                const trackEl = document.createElement('div');
+                trackEl.className = `flex items-center justify-between p-2 rounded-xl cursor-pointer text-xs transition duration-200 ${
+                    isCurrent ? 'bg-purple-600/30 text-purple-300 font-semibold border border-purple-500/40' : 'hover:bg-white/5 text-gray-300'
+                }`;
+                trackEl.onclick = () => selectTrack(index);
+                trackEl.innerHTML = `
+                    <div class="flex items-center space-x-2.5 truncate">
+                        <i class="fa-solid ${isCurrent && isPlaying ? 'fa-volume-high theme-accent-text animate-pulse' : 'fa-music theme-accent-text'}"></i>
+                        <span class="truncate">${track.title}</span>
+                    </div>
+                    <span class="text-[10px] text-gray-400 font-mono">${track.artist}</span>
+                `;
+                playlistContainer.appendChild(trackEl);
+            });
+        }
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+                updatePlayerUI();
+            } else {
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        isPlaying = true;
+                        updatePlayerUI();
+                    }).catch(err => {
+                        isPlaying = false;
+                        updatePlayerUI();
+                        showToast("Gagal memutar audio. Pastikan file mp3 berada di folder HTML.");
+                    });
+                }
+            }
+        }
+
+        function selectTrack(index) {
+            currentTrackIndex = index;
+            audio.src = playlist[currentTrackIndex].url;
+            audio.currentTime = 0;
+            isPlaying = true;
+            
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    updatePlayerUI();
+                    showToast(`Lagu: ${playlist[currentTrackIndex].title}`);
+                }).catch(() => {
+                    isPlaying = false;
+                    updatePlayerUI();
+                    showToast(`File ${playlist[currentTrackIndex].url} tidak ditemukan.`);
+                });
+            }
+        }
+
+        function playNextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            selectTrack(currentTrackIndex);
+        }
+
+        function playPrevTrack() {
+            currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+            selectTrack(currentTrackIndex);
+        }
+
+        function updatePlayerUI() {
+            currentTitle.innerText = playlist[currentTrackIndex].title;
+            currentArtist.innerText = playlist[currentTrackIndex].artist || "Unknown Artist";
+
+            if (isPlaying) {
+                eqIcon.classList.remove('paused');
+                playBtnIcon.className = "fa-solid fa-pause text-base";
+                discIcon.classList.add('animate-spin');
+            } else {
+                eqIcon.classList.add('paused');
+                playBtnIcon.className = "fa-solid fa-play text-base pl-0.5";
+                discIcon.classList.remove('animate-spin');
+            }
+            renderPlaylist();
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            if (audio.duration && !isNaN(audio.duration)) {
+                const progressPercent = (audio.currentTime / audio.duration) * 100;
+                progressBar.value = progressPercent;
+                currentTimeEl.innerText = formatTime(audio.currentTime);
+                durationTimeEl.innerText = formatTime(audio.duration);
+            }
+        });
+
+        progressBar.addEventListener('input', () => {
+            if (audio.duration && !isNaN(audio.duration)) {
+                audio.currentTime = (progressBar.value / 100) * audio.duration;
+            }
+        });
+
+        volumeControl.addEventListener('input', (e) => {
+            audio.volume = e.target.value;
+        });
+
+        audio.addEventListener('ended', () => {
+            playNextTrack();
+        });
+
+        function formatTime(seconds) {
+            const min = Math.floor(seconds / 60);
+            const sec = Math.floor(seconds % 60);
+            return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+        }
+
+        // Modal Management & Full Screen Blur
+        let isMusicMenuOpen = false;
+        let isOptionsMenuOpen = false;
+
+        function applyFullScreenBlur(active) {
+            if (active) {
+                mainContent.classList.add('full-screen-blur');
+                bgVideo.classList.add('blur-md');
+                modalCurtain.classList.add('active');
+            } else {
+                mainContent.classList.remove('full-screen-blur');
+                bgVideo.classList.remove('blur-md');
+                modalCurtain.classList.remove('active');
+            }
+        }
+
+        function closeAllModals() {
+            isMusicMenuOpen = false;
+            isOptionsMenuOpen = false;
+            musicModal.classList.add('translate-y-full');
+            optionsModal.classList.add('translate-y-full');
+            applyFullScreenBlur(false);
+        }
+
+        function toggleMusicMenu() {
+            if (isOptionsMenuOpen) {
+                optionsModal.classList.add('translate-y-full');
+                isOptionsMenuOpen = false;
+            }
+
+            isMusicMenuOpen = !isMusicMenuOpen;
+            if (isMusicMenuOpen) {
+                musicModal.classList.remove('translate-y-full');
+                applyFullScreenBlur(true);
+            } else {
+                musicModal.classList.add('translate-y-full');
+                applyFullScreenBlur(false);
+            }
+        }
+
+        function toggleOptionsMenu() {
+            if (isMusicMenuOpen) {
+                musicModal.classList.add('translate-y-full');
+                isMusicMenuOpen = false;
+            }
+
+            isOptionsMenuOpen = !isOptionsMenuOpen;
+            if (isOptionsMenuOpen) {
+                optionsModal.classList.remove('translate-y-full');
+                applyFullScreenBlur(true);
+            } else {
+                optionsModal.classList.add('translate-y-full');
+                applyFullScreenBlur(false);
+            }
+        }
+
+        // Dynamic Theme Color Switcher
+        function setThemeColor(colorHex) {
+            document.documentElement.style.setProperty('--accent-color', colorHex);
+            document.documentElement.style.setProperty('--accent-glow', colorHex + '80');
+            document.documentElement.style.setProperty('--accent-border', colorHex + '33');
+            document.documentElement.style.setProperty('--accent-hover', colorHex + '26');
+            showToast("Warna tema berhasil diperbarui!");
+        }
+
+        // Custom Background Video via URL
+        function applyVideoUrl() {
+            const url = document.getElementById('videoUrlInput').value.trim();
+            if (url) {
+                bgVideo.src = url;
+                bgVideo.play();
+                showToast("Background video diperbarui!");
+            } else {
+                showToast("Masukkan URL video yang valid!");
+            }
+        }
+
+        // Custom Background Video via Local File Upload
+        function handleVideoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const fileURL = URL.createObjectURL(file);
+                bgVideo.src = fileURL;
+                bgVideo.play();
+                showToast("Video lokal berhasil dipasang!");
+            }
+        }
+
+        // Link Click & Ripple Effect Handler
+        function handleLinkClick(event, name) {
+            const button = event.currentTarget;
+            
+            const circle = document.createElement('span');
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+            const rect = button.getBoundingClientRect();
+
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - rect.left - radius}px`;
+            circle.style.top = `${event.clientY - rect.top - radius}px`;
+            circle.classList.add('ripple');
+
+            const ripple = button.getElementsByClassName('ripple')[0];
+            if (ripple) {
+                ripple.remove();
+            }
+
+            button.appendChild(circle);
+            showToast(`Membuka ${name}...`);
+        }
+
+        // Toast Popup Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+
+            toastMessage.innerText = message;
+            toast.classList.remove('-translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('-translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+
+        window.onload = function() {
+            renderPlaylist();
+        };
+    </script>
+</body>
+</html>
